@@ -11,6 +11,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart' as slpMap;
+import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:simple_location_picker/utils/slp_constants.dart';
 import 'simple_location_result.dart';
 
@@ -41,15 +42,16 @@ class SimpleLocationPicker extends StatefulWidget {
   /// Sets the appbar text color.
   final String appBarTitle;
 
-  SimpleLocationPicker(
-      {this.initialLatitude = SLPConstants.DEFAULT_LATITUDE,
-      this.initialLongitude = SLPConstants.DEFAULT_LONGITUDE,
-      this.zoomLevel = SLPConstants.DEFAULT_ZOOM_LEVEL,
-      this.displayOnly = false,
-      this.appBarColor = Colors.blueAccent,
-      this.appBarTextColor = Colors.white,
-      this.appBarTitle = "Select Location",
-      this.markerColor = Colors.blueAccent});
+  SimpleLocationPicker({
+    this.initialLatitude = SLPConstants.DEFAULT_LATITUDE,
+    this.initialLongitude = SLPConstants.DEFAULT_LONGITUDE,
+    this.zoomLevel = SLPConstants.DEFAULT_ZOOM_LEVEL,
+    this.displayOnly = false,
+    this.appBarColor = Colors.blueAccent,
+    this.appBarTextColor = Colors.white,
+    this.appBarTitle = "Select Location",
+    this.markerColor = Colors.blueAccent,
+  });
 
   @override
   _SimpleLocationPickerState createState() => _SimpleLocationPickerState();
@@ -57,12 +59,14 @@ class SimpleLocationPicker extends StatefulWidget {
 
 class _SimpleLocationPickerState extends State<SimpleLocationPicker> {
   // Holds the value of the picked location.
-  SimpleLocationResult _selectedLocation;
+  late SimpleLocationResult _selectedLocation;
 
   void initState() {
     super.initState();
-    _selectedLocation =
-        SimpleLocationResult(widget.initialLatitude, widget.initialLongitude);
+    _selectedLocation = SimpleLocationResult(
+      widget.initialLatitude,
+      widget.initialLongitude,
+    );
   }
 
   @override
@@ -92,32 +96,36 @@ class _SimpleLocationPickerState extends State<SimpleLocationPicker> {
   /// Returns a widget containing the openstreetmaps screen.
   Widget _osmWidget() {
     return slpMap.FlutterMap(
-        options: slpMap.MapOptions(
-            center: _selectedLocation.getLatLng(),
-            zoom: widget.zoomLevel,
-            onTap: (tapLoc) {
-              // DISPLAY_ONLY MODE: no map taps for display only mode
-              if (!widget.displayOnly) {
-                setState(() {
-                  _selectedLocation =
-                      SimpleLocationResult(tapLoc.latitude, tapLoc.longitude);
-                });
-              }
-            }),
-        layers: [
-          slpMap.TileLayerOptions(
-              urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-              subdomains: ['a', 'b', 'c']),
-          slpMap.MarkerLayerOptions(markers: [
+      options: slpMap.MapOptions(
+          initialCenter: _selectedLocation.getLatLng(),
+          initialZoom: widget.zoomLevel,
+          onTap: (tapPosition, latLng) {
+            // DISPLAY_ONLY MODE: no map taps for display only mode
+            if (!widget.displayOnly) {
+              setState(() {
+                _selectedLocation =
+                    SimpleLocationResult(latLng.latitude, latLng.longitude);
+              });
+            }
+          }),
+      children: [
+        slpMap.TileLayer(
+          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          tileProvider: CancellableNetworkTileProvider(
+            silenceExceptions: true,
+          ),
+        ),
+        slpMap.MarkerLayer(
+          markers: [
             slpMap.Marker(
                 width: 80.0,
                 height: 80.0,
-                anchorPos: slpMap.AnchorPos.align(slpMap.AnchorAlign.top),
+                alignment: Alignment.topCenter,
                 point: _selectedLocation.getLatLng(),
-                builder: (ctx) {
-                  return Icon(Icons.room, size: 80, color: widget.markerColor);
-                })
-          ])
-        ]);
+                child: Icon(Icons.room, size: 80, color: widget.markerColor))
+          ],
+        )
+      ],
+    );
   }
 }

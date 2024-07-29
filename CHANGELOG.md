@@ -1,3 +1,7 @@
+## [0.0.4] - 29/07/2024.
+
+* updated to support latest flutter, dart and dependencies
+
 ## [0.0.3] - 09/07/2020.
 
 * dartfmt on SimpleLocationPicker screen 
