@@ -42,6 +42,9 @@ class SimpleLocationPicker extends StatefulWidget {
   /// Sets the appbar text color.
   final String appBarTitle;
 
+  // User Agent to compile OSM
+  final String userAgent;
+
   SimpleLocationPicker({
     this.initialLatitude = SLPConstants.DEFAULT_LATITUDE,
     this.initialLongitude = SLPConstants.DEFAULT_LONGITUDE,
@@ -51,6 +54,7 @@ class SimpleLocationPicker extends StatefulWidget {
     this.appBarTextColor = Colors.white,
     this.appBarTitle = "Select Location",
     this.markerColor = Colors.blueAccent,
+    required this.userAgent,
   });
 
   @override
@@ -114,6 +118,7 @@ class _SimpleLocationPickerState extends State<SimpleLocationPicker> {
           tileProvider: CancellableNetworkTileProvider(
             silenceExceptions: true,
           ),
+          userAgentPackageName: widget.userAgent,
         ),
         slpMap.MarkerLayer(
           markers: [

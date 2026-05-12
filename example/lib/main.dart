@@ -38,71 +38,74 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: Center(
-        child: Column(
+        appBar: AppBar(title: Text(widget.title)),
+        body: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-            SizedBox(height: 50),
+              SizedBox(height: 50),
 
-        // The button that opens the SimpleLocationPicker in display ONLY mode.
-        // This opens the SimpleLocationPicker to display a specific location on the map with a marker.
-        ElevatedButton(
-          child: Text("Display a location"),
-          onPressed: () {
-            double latitude = _selectedLocation?.latitude ??
-                SLPConstants.DEFAULT_LATITUDE;
-            double longitude = _selectedLocation?.longitude ??
-                SLPConstants.DEFAULT_LONGITUDE;
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        SimpleLocationPicker(
+              // The button that opens the SimpleLocationPicker in display ONLY mode.
+              // This opens the SimpleLocationPicker to display a specific location on the map with a marker.
+              ElevatedButton(
+                child: Text("Display a location"),
+                onPressed: () {
+                  double latitude = _selectedLocation?.latitude ??
+                      SLPConstants.DEFAULT_LATITUDE;
+                  double longitude = _selectedLocation?.longitude ??
+                      SLPConstants.DEFAULT_LONGITUDE;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SimpleLocationPicker(
                           initialLatitude: latitude,
                           initialLongitude: longitude,
                           appBarTitle: "Display Location",
                           displayOnly: true,
-                        )));
-          },
-        ),
-        SizedBox(height: 50),
+                          userAgent: 'YourApp/V1.0.0'),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(height: 50),
 
-        // The button that opens the SimpleLocationPicker in picker mode.
-        // This opens the SimpleLocationPicker to allow the user to pick a location from the map.
-        // The SimpleLocationPicker returns SimpleLocationResult containing the lat, lng of the picked location.
-        ElevatedButton(
-          child: Text("Pick a Location"),
-          onPressed: () {
-            double latitude = _selectedLocation?.latitude ??
-                SLPConstants.DEFAULT_LATITUDE;
-            double longitude = _selectedLocation?.longitude ??
-                SLPConstants.DEFAULT_LONGITUDE;
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        SimpleLocationPicker(
+              // The button that opens the SimpleLocationPicker in picker mode.
+              // This opens the SimpleLocationPicker to allow the user to pick a location from the map.
+              // The SimpleLocationPicker returns SimpleLocationResult containing the lat, lng of the picked location.
+              ElevatedButton(
+                child: Text("Pick a Location"),
+                onPressed: () {
+                  double latitude = _selectedLocation?.latitude ??
+                      SLPConstants.DEFAULT_LATITUDE;
+                  double longitude = _selectedLocation?.longitude ??
+                      SLPConstants.DEFAULT_LONGITUDE;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SimpleLocationPicker(
                           initialLatitude: latitude,
                           initialLongitude: longitude,
                           appBarTitle: "Select Location",
-                        ))).then((value) {
-              if (value != null) {
-                setState(() {
-                  _selectedLocation = value;
-                });
-              }
-            });
-          },
-        ),
+                          userAgent: 'YourApp/V1.0.0'),
+                    ),
+                  ).then((value) {
+                    if (value != null) {
+                      setState(() {
+                        _selectedLocation = value;
+                      });
+                    }
+                  });
+                },
+              ),
 
-        SizedBox(height: 50),
-        // Displays the picked location on the screen as text.
-        _selectedLocation != null ? Text(
-            'SELECTED: (${_selectedLocation?.latitude}, ${_selectedLocation
-                ?.longitude})') : Container(),
-        ],
-      ),
-    ));
+              SizedBox(height: 50),
+              // Displays the picked location on the screen as text.
+              _selectedLocation != null
+                  ? Text(
+                      'SELECTED: (${_selectedLocation?.latitude}, ${_selectedLocation?.longitude})')
+                  : Container(),
+            ],
+          ),
+        ));
   }
 }

@@ -32,12 +32,13 @@ void main() {
     testWidgets('Navigation bar color positive test',
         (WidgetTester tester) async {
       await startSimpleLocationPicker(
-          tester,
-          SimpleLocationPicker(
+        tester,
+        SimpleLocationPicker(
             initialLatitude: latitude,
             initialLongitude: longitude,
             appBarColor: Colors.green,
-          ));
+            userAgent: 'YourApp/V1.0.0'),
+      );
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle(); //
@@ -51,10 +52,10 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            appBarColor: Colors.green,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              appBarColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle(); //
@@ -65,12 +66,13 @@ void main() {
 
     testWidgets('Display Only Mode Positive test', (WidgetTester tester) async {
       await startSimpleLocationPicker(
-          tester,
-          SimpleLocationPicker(
+        tester,
+        SimpleLocationPicker(
             initialLatitude: latitude,
             initialLongitude: longitude,
             displayOnly: true,
-          ));
+            userAgent: 'YourApp/V1.0.0'),
+      );
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -82,12 +84,13 @@ void main() {
 
     testWidgets('Display Only Mode Negative test', (WidgetTester tester) async {
       await startSimpleLocationPicker(
-          tester,
-          SimpleLocationPicker(
+        tester,
+        SimpleLocationPicker(
             initialLatitude: latitude,
             initialLongitude: longitude,
             displayOnly: false,
-          ));
+            userAgent: 'YourApp/V1.0.0'),
+      );
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -104,6 +107,7 @@ void main() {
             initialLatitude: latitude,
             initialLongitude: longitude,
             appBarTitle: "TestTitle",
+            userAgent: 'YourApp/V1.0.0',
           ));
 
       await tester.tap(find.byType(TextButton));
@@ -116,10 +120,10 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            appBarTitle: "TestTitleNegative",
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              appBarTitle: "TestTitleNegative",
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -131,11 +135,11 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            appBarTitle: "TestTitle",
-            appBarTextColor: Colors.redAccent,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              appBarTitle: "TestTitle",
+              appBarTextColor: Colors.redAccent,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -149,11 +153,11 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            appBarTitle: "TestTitle",
-            appBarTextColor: Colors.green,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              appBarTitle: "TestTitle",
+              appBarTextColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -167,11 +171,11 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            appBarTitle: "TestTitle",
-            appBarTextColor: Colors.green,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              appBarTitle: "TestTitle",
+              appBarTextColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -198,10 +202,10 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            markerColor: Colors.green,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              markerColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -221,10 +225,10 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            markerColor: Colors.redAccent,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              markerColor: Colors.redAccent,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -244,12 +248,12 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            appBarTitle: "TestTitle",
-            zoomLevel: 10,
-            appBarTextColor: Colors.green,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              appBarTitle: "TestTitle",
+              zoomLevel: 10,
+              appBarTextColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -265,12 +269,12 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            appBarTitle: "TestTitle",
-            zoomLevel: 10,
-            appBarTextColor: Colors.green,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              appBarTitle: "TestTitle",
+              zoomLevel: 10,
+              appBarTextColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle();
@@ -288,11 +292,11 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            displayOnly: false,
-            appBarColor: Colors.green,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              displayOnly: false,
+              appBarColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle(); //
@@ -340,16 +344,19 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: latitude,
-            initialLongitude: longitude,
-            displayOnly: true,
-            appBarColor: Colors.green,
-          ));
+              initialLatitude: latitude,
+              initialLongitude: longitude,
+              displayOnly: true,
+              appBarColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle(); //
 
-      Marker marker = (((tester.firstWidget(find.byType(FlutterMap)) as FlutterMap).children)[1] as MarkerLayer).markers[0];
+      Marker marker =
+          (((tester.firstWidget(find.byType(FlutterMap)) as FlutterMap)
+                  .children)[1] as MarkerLayer)
+              .markers[0];
       double mLatitude = marker.point.latitude;
       double mLongitude = marker.point.longitude;
       expect(mLatitude, latitude);
@@ -375,11 +382,11 @@ void main() {
       await startSimpleLocationPicker(
           tester,
           SimpleLocationPicker(
-            initialLatitude: 20,
-            initialLongitude: 30,
-            displayOnly: false,
-            appBarColor: Colors.green,
-          ));
+              initialLatitude: 20,
+              initialLongitude: 30,
+              displayOnly: false,
+              appBarColor: Colors.green,
+              userAgent: 'YourApp/V1.0.0'));
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle(); //
@@ -399,13 +406,15 @@ void main() {
       _result = null;
 
       await startSimpleLocationPicker(
-          tester,
-          SimpleLocationPicker(
-            initialLatitude: 20,
-            initialLongitude: 30,
-            displayOnly: false,
-            appBarColor: Colors.green,
-          ));
+        tester,
+        SimpleLocationPicker(
+          initialLatitude: 20,
+          initialLongitude: 30,
+          displayOnly: false,
+          appBarColor: Colors.green,
+          userAgent: 'YourApp/V1.0.0',
+        ),
+      );
 
       await tester.tap(find.byType(TextButton));
       await tester.pumpAndSettle(); //
